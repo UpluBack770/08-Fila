@@ -9,6 +9,7 @@ struct NO {
 
 NO* inicio = NULL;
 NO* fim = NULL;
+NO* primeiro = NULL;
 
 // headers
 void menu();
@@ -88,12 +89,40 @@ void insere()
 	cin >> novo->valor;
 	novo->prox = NULL;
 
+	if (inicio == NULL) 
+	{
+		inicio = novo;
+		fim = novo;
+		primeiro = novo;
+	}
+	else
+	{
+		NO* aux = inicio;
+		while (aux->prox != NULL) 
+		{
+			aux = aux->prox;
+		}
+
+		aux->prox = novo;
+		fim = aux ->prox;
+	}
+
 
 }
 
 void remove()
 {
+	if (inicio == NULL)
+	{
+		cout << "Lista Vazia" << endl;
+		return;
+	}
 
+	cout << "Elemento " << inicio->valor << "sera deletado" << endl;
+
+	inicio = primeiro->prox;
+	free(primeiro);
+	primeiro = inicio;
 
 
 }
